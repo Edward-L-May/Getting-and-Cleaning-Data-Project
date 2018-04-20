@@ -31,7 +31,7 @@ library(reshape2)
 # We first unzip the files creating a directory structure:
     
     
-# setwd("~/Coursera/Getting and Cleaning Data/Project/UCI HAR Dataset")
+setwd("~/Coursera/Getting and Cleaning Data/Project/UCI HAR Dataset")
 # dir(recursive=TRUE)
 
 ##Load data into variables
@@ -98,25 +98,9 @@ table(all$subject,all$label)
 rf <- features[stdandmean]
 
 # then we melt and cast the data:
-
-submelt <- melt(all,id="subject",measure.vars = rf)
-submean <- dcast(submelt,subject ~ rf,mean)
-submean <- submean[order(as.numeric(submean$subject)),]         ##order them
-#View(submean)
-
-labelmelt <- melt(all,id="label",measure.vars = rf)
-labelmean <- dcast(labelmelt,label ~ rf,mean)
-#View(labelmean)
-
-
-# Need to change the first column to "test_data", 
-# and put in "Subject 1 averages->", or "Walking averages->" for example
-
-setnames(labelmean,"label","test data")
-setnames(submean,"subject","test data")
-labelmean$`test data` <- paste(labelmean$`test data`,"averages->")
-submean$`test data` <- paste("Subject",submean$`test data`,"averages->")
-final <- rbind(submean,labelmean)
+meltall <- melt(all,id=(c("subject","label")),measure.vars = rf)
+meanall <- dcast(meltall,subject+label ~ rf,mean )
+final <- meanall[order(as.numeric(meanall$subject),meanall$label),order(as.numeric(names(meanall)))]
 
 #now clean up leaving only all and final
 
@@ -124,4 +108,6 @@ final <- rbind(submean,labelmean)
 # d <- ls()
 # d <- d[d != "final" & d !="all"]
 # rm(list = d)
+
+write.table(final,"tidyData.txt",row.names=FALSE)
 
