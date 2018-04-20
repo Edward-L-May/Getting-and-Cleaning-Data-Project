@@ -1,0 +1,157 @@
+---
+title: "CodeBoor.Rn"
+output: html_notebook
+---
+Attribution:
+This is a project to tidy the data from the 
+
+Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+from: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+Attribution and License:
+
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
+
+
+
+The columns in all are the following.  The sources for the processing to obtain the values in the first 86 columns can be found in the README.txt file found in the unzipped 
+/UCI HAR Dataset/ directory.
+The column "subject" are parsed from the respective subject_text.txt and subject_train.txt files
+The column "label" are parsed from the respective y_train.txt and y_test.txt files
+The final column "dataset"documents where the data was obtained: from the test or train datasets.
+##"all" variables
+ [1] "1 tBodyAcc-mean()-X"                     
+ [2] "2 tBodyAcc-mean()-Y"                     
+ [3] "3 tBodyAcc-mean()-Z"                     
+ [4] "4 tBodyAcc-std()-X"                      
+ [5] "5 tBodyAcc-std()-Y"                      
+ [6] "6 tBodyAcc-std()-Z"                      
+ [7] "41 tGravityAcc-mean()-X"                 
+ [8] "42 tGravityAcc-mean()-Y"                 
+ [9] "43 tGravityAcc-mean()-Z"                 
+[10] "44 tGravityAcc-std()-X"                  
+[11] "45 tGravityAcc-std()-Y"                  
+[12] "46 tGravityAcc-std()-Z"                  
+[13] "81 tBodyAccJerk-mean()-X"                
+[14] "82 tBodyAccJerk-mean()-Y"                
+[15] "83 tBodyAccJerk-mean()-Z"                
+[16] "84 tBodyAccJerk-std()-X"                 
+[17] "85 tBodyAccJerk-std()-Y"                 
+[18] "86 tBodyAccJerk-std()-Z"                 
+[19] "121 tBodyGyro-mean()-X"                  
+[20] "122 tBodyGyro-mean()-Y"                  
+[21] "123 tBodyGyro-mean()-Z"                  
+[22] "124 tBodyGyro-std()-X"                   
+[23] "125 tBodyGyro-std()-Y"                   
+[24] "126 tBodyGyro-std()-Z"                   
+[25] "161 tBodyGyroJerk-mean()-X"              
+[26] "162 tBodyGyroJerk-mean()-Y"              
+[27] "163 tBodyGyroJerk-mean()-Z"              
+[28] "164 tBodyGyroJerk-std()-X"               
+[29] "165 tBodyGyroJerk-std()-Y"               
+[30] "166 tBodyGyroJerk-std()-Z"               
+[31] "201 tBodyAccMag-mean()"                  
+[32] "202 tBodyAccMag-std()"                   
+[33] "214 tGravityAccMag-mean()"               
+[34] "215 tGravityAccMag-std()"                
+[35] "227 tBodyAccJerkMag-mean()"              
+[36] "228 tBodyAccJerkMag-std()"               
+[37] "240 tBodyGyroMag-mean()"                 
+[38] "241 tBodyGyroMag-std()"                  
+[39] "253 tBodyGyroJerkMag-mean()"             
+[40] "254 tBodyGyroJerkMag-std()"              
+[41] "266 fBodyAcc-mean()-X"                   
+[42] "267 fBodyAcc-mean()-Y"                   
+[43] "268 fBodyAcc-mean()-Z"                   
+[44] "269 fBodyAcc-std()-X"                    
+[45] "270 fBodyAcc-std()-Y"                    
+[46] "271 fBodyAcc-std()-Z"                    
+[47] "294 fBodyAcc-meanFreq()-X"               
+[48] "295 fBodyAcc-meanFreq()-Y"               
+[49] "296 fBodyAcc-meanFreq()-Z"               
+[50] "345 fBodyAccJerk-mean()-X"               
+[51] "346 fBodyAccJerk-mean()-Y"               
+[52] "347 fBodyAccJerk-mean()-Z"               
+[53] "348 fBodyAccJerk-std()-X"                
+[54] "349 fBodyAccJerk-std()-Y"                
+[55] "350 fBodyAccJerk-std()-Z"                
+[56] "373 fBodyAccJerk-meanFreq()-X"           
+[57] "374 fBodyAccJerk-meanFreq()-Y"           
+[58] "375 fBodyAccJerk-meanFreq()-Z"           
+[59] "424 fBodyGyro-mean()-X"                  
+[60] "425 fBodyGyro-mean()-Y"                  
+[61] "426 fBodyGyro-mean()-Z"                  
+[62] "427 fBodyGyro-std()-X"                   
+[63] "428 fBodyGyro-std()-Y"                   
+[64] "429 fBodyGyro-std()-Z"                   
+[65] "452 fBodyGyro-meanFreq()-X"              
+[66] "453 fBodyGyro-meanFreq()-Y"              
+[67] "454 fBodyGyro-meanFreq()-Z"              
+[68] "503 fBodyAccMag-mean()"                  
+[69] "504 fBodyAccMag-std()"                   
+[70] "513 fBodyAccMag-meanFreq()"              
+[71] "516 fBodyBodyAccJerkMag-mean()"          
+[72] "517 fBodyBodyAccJerkMag-std()"           
+[73] "526 fBodyBodyAccJerkMag-meanFreq()"      
+[74] "529 fBodyBodyGyroMag-mean()"             
+[75] "530 fBodyBodyGyroMag-std()"              
+[76] "539 fBodyBodyGyroMag-meanFreq()"         
+[77] "542 fBodyBodyGyroJerkMag-mean()"         
+[78] "543 fBodyBodyGyroJerkMag-std()"          
+[79] "552 fBodyBodyGyroJerkMag-meanFreq()"     
+[80] "555 angle(tBodyAccMean,gravity)"         
+[81] "556 angle(tBodyAccJerkMean),gravityMean)"
+[82] "557 angle(tBodyGyroMean,gravityMean)"    
+[83] "558 angle(tBodyGyroJerkMean,gravityMean)"
+[84] "559 angle(X,gravityMean)"                
+[85] "560 angle(Y,gravityMean)"                
+[86] "561 angle(Z,gravityMean)"                
+[87] "label"                                   
+[88] "subject"                                 
+[89] "dataset"
+
+##"final" variables
+The first column in "final" is the description of either the Subject number or, in the cse of the last 6 lines, the motions the subjects were undertaking
+The second through 87th column are the averages of either the standard deviation or mean of the various variables corresponding toe columns 1 to 86 of "all.
+
+As the following table shows, there are around 50 examples of each of the 6 motions
+performed by each of 30 subjects:
+
+subject   LAYING  SITTING STANDING WALKING WALKING_DOWNSTAIRS WALKING_UPSTAIRS
+   1      50      47       53      95                 49               53
+   10     58      54       44      53                 38               47
+   11     57      53       47      59                 46               54
+   12     60      51       61      50                 46               52
+   13     62      49       57      57                 47               55
+   14     51      54       60      59                 45               54
+   15     72      59       53      54                 42               48
+   16     70      69       78      51                 47               51
+   17     71      64       78      61                 46               48
+   18     65      57       73      56                 55               58
+   19     83      73       73      52                 39               40
+   2      48      46       54      59                 47               48
+   20     68      66       73      51                 45               51
+   21     90      85       89      52                 45               47
+   22     72      62       63      46                 36               42
+   23     72      68       68      59                 54               51
+   24     72      68       69      58                 55               59
+   25     73      65       74      74                 58               65
+   26     76      78       74      59                 50               55
+   27     74      70       80      57                 44               51
+   28     80      72       79      54                 46               51
+   29     69      60       65      53                 48               49
+   3      62      52       61      58                 49               59
+   30     70      62       59      65                 62               65
+   4      54      50       56      60                 45               52
+   5      52      44       56      56                 47               47
+   6      57      55       57      57                 48               51
+   7      52      48       53      57                 47               51
+   8      54      46       54      48                 38               41
+   9      50      50       45      52                 42               49
+
